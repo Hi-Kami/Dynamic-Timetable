@@ -1,0 +1,138 @@
+<html>
+	<head>
+	<!--
+		
+	-->
+		<link rel = "stylesheet" type = "text/css" href = "activities.css">
+	</head>
+	<body>
+		<div class = "activitiestable">
+			<script>
+
+			//Display Function
+			function DisplayDayEvents( DayName, DayData )
+			{
+				var FirstLayer = true;
+				var NameString;
+				var Delay = 0;
+				var FirstDelay = false;
+
+				document.write( "<tr><th class = 'lables'>"+ DayName +"</th>" );
+				while( DayData.length > 0 )
+				{
+					if( FirstLayer ){ FirstLayer = false; }
+					else{ document.write( "<tr><th class = 'lables'></th>" ); }
+					
+					for( var HourCount = 9; HourCount < 20; HourCount++ )//Hour
+					{
+						for( var MinCount = 0; MinCount < 46; MinCount += 15 )//Min
+						{
+							if( Delay == 0 )
+							{
+								for( var j = 0; j < DayData.length; j++ )
+								{
+									if
+									(
+										DayData[j].getElementsByTagName( "TimeStartHour" )[0].childNodes[0].nodeValue == HourCount &&
+										DayData[j].getElementsByTagName( "TimeStartMinute" )[0].childNodes[0].nodeValue == MinCount 
+									)
+									{
+										Delay = ( ( DayData[j].getElementsByTagName( "TimeEndHour" )[0].childNodes[0].nodeValue - DayData[j].getElementsByTagName( "TimeStartHour" )[0].childNodes[0].nodeValue ) * 4 );
+										Delay -= ( DayData[j].getElementsByTagName( "TimeStartMinute" )[0].childNodes[0].nodeValue / 15 );
+										Delay += ( DayData[j].getElementsByTagName( "TimeEndMinute" )[0].childNodes[0].nodeValue / 15 );
+										NameString = DayData[j].getElementsByTagName( "Name" )[0].childNodes[0].nodeValue.toString();
+										FirstDelay = true;
+										DayData.splice( j, 1 );
+										break;
+									}									
+								}
+										
+								if(  Delay == 0  ) ////////////////////////////////////
+								{
+									document.write( "<th  class = 'freetime'></th>" );
+								}
+								else if( FirstDelay )
+								{
+									document.write( "<th class = 'event'  colspan = " + Delay.toString() + ">" + NameString + "</th>" );
+								}
+							}
+							else
+							{ 
+								Delay--; 
+								if( Delay > 0 && Delay < 1 ){ Delay = 0; } 
+								//Render code here 
+							}
+						}
+					}
+					document.write( "</tr>" );
+				}
+			}
+
+
+			//Main Code
+			{
+				//Load XML file
+				if( window.XMLHttpRequest ){ xmlhttp = new XMLHttpRequest(); }
+				else{ xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" ); }
+							
+				xmlhttp.open( "GET", "activities.xml", false );
+				xmlhttp.send();
+				xmlDoc = xmlhttp.responseXML; 
+							
+				//Stores all events in event list, and sorts them into the correct day
+				var EventList = xmlDoc.getElementsByTagName( "Event" );
+							
+				var Mondays = new Array();
+				var Tuesdays = new Array();
+				var Wednesdays = new Array();
+				var Thursdays = new Array();
+				var Fridays = new Array();
+							
+				for( var i = 0; i < EventList.length; i++ )
+				{
+					if( EventList[i].getElementsByTagName( "Day" )[0].childNodes[0].nodeValue == "Monday"  )
+					{
+						Mondays.push( EventList[i] );
+					}
+								
+					if( EventList[i].getElementsByTagName( "Day" )[0].childNodes[0].nodeValue == "Tuesday"  )
+					{
+						Tuesdays.push( EventList[i] );
+					}
+								
+					if( EventList[i].getElementsByTagName( "Day" )[0].childNodes[0].nodeValue == "Wednesday"  )
+					{
+						Wednesdays.push( EventList[i] );
+					}
+								
+					if( EventList[i].getElementsByTagName( "Day" )[0].childNodes[0].nodeValue == "Thursday"  )
+					{
+						Thursdays.push( EventList[i] );
+					}
+								
+					if( EventList[i].getElementsByTagName( "Day" )[0].childNodes[0].nodeValue == "Friday"  )
+					{
+						Fridays.push( EventList[i] );
+					}
+				}
+							
+				//Generate table and time bar
+				document.write( "<table><tr><th class = 'lables'></th><th colspan = '4' class = 'lables'>9AM</th><th colspan = '4' class = 'lables'>10AM</th><th colspan = '4' class = 'lables'>11AM</th><th colspan = '4' class = 'lables'>12PM</th><th colspan = '4' class = 'lables'>1PM</th><th colspan = '4' class = 'lables'>2PM</th><th colspan = '4' class = 'lables'>3PM</th><th colspan = '4' class = 'lables'>4PM</th><th colspan = '4' class = 'lables'>5PM</th><th colspan = '4' class = 'lables'>6PM</th><th colspan = '4' class = 'lables'>7PM</th></tr>" );
+							
+				//Process Monday
+				DisplayDayEvents( "Monday", Mondays );
+				DisplayDayEvents( "Tuesday", Tuesdays );
+				DisplayDayEvents( "Wednesday", Wednesdays );
+				DisplayDayEvents( "Thursday", Thursdays );
+				DisplayDayEvents( "Friday", Fridays );
+							
+							
+				document.write( "<table>" );
+			}
+			</script>
+			<noscript>
+				<p>Sorry, Your browser has scripts disabled or does not support scripts.</p>
+			</noscript>
+		</div>
+	</body>
+</html>

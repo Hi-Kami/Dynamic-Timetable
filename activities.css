@@ -1,0 +1,24 @@
+div.activitiestable th
+{
+	border-style: solid;
+}
+
+div.activitiestable th.lables
+{
+	background-color: gray;
+	border-style: solid;
+	border-width: 1px;
+}
+
+div.activitiestable th.event
+{
+	background-color: red;
+	border-style: solid;
+	border-width: 1px;
+}
+
+div.activitiestable th.freetime
+{
+	background-color: white;
+	border-style: none;
+}

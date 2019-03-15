@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Notes: 
+-Day must be Monday, Tuesday, Wednesday, Thursday, or Friday. or it will be ignored
+-Store times in 24 hour clocks
+-Hours must be between 9 and 19
+-Minutes must be 0, 15, 30 or 45
+-->
+
+<EventList>
+	<Event>
+		<Name>Tenis</Name>
+		<Day>Monday</Day>
+		<TimeStartHour>15</TimeStartHour>
+		<TimeStartMinute>30</TimeStartMinute>
+		<TimeEndHour>18</TimeEndHour>
+		<TimeEndMinute>30</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+
+	<Event>
+		<Name>Golf</Name>
+		<Day>Monday</Day>
+		<TimeStartHour>14</TimeStartHour>
+		<TimeStartMinute>30</TimeStartMinute>
+		<TimeEndHour>19</TimeEndHour>
+		<TimeEndMinute>30</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+	
+	<Event>
+		<Name>Football</Name>
+		<Day>Monday</Day>
+		<TimeStartHour>10</TimeStartHour>
+		<TimeStartMinute>30</TimeStartMinute>
+		<TimeEndHour>12</TimeEndHour>
+		<TimeEndMinute>30</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+	
+	<Event>
+		<Name>Hocky</Name>
+		<Day>Monday</Day>
+		<TimeStartHour>9</TimeStartHour>
+		<TimeStartMinute>15</TimeStartMinute>
+		<TimeEndHour>12</TimeEndHour>
+		<TimeEndMinute>45</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+
+	<Event>
+		<Name>Hocky</Name>
+		<Day>Tuesday</Day>
+		<TimeStartHour>9</TimeStartHour>
+		<TimeStartMinute>15</TimeStartMinute>
+		<TimeEndHour>12</TimeEndHour>
+		<TimeEndMinute>45</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+
+	<Event>
+		<Name>Running</Name>
+		<Day>Friday</Day>
+		<TimeStartHour>10</TimeStartHour>
+		<TimeStartMinute>00</TimeStartMinute>
+		<TimeEndHour>12</TimeEndHour>
+		<TimeEndMinute>00</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+
+	<Event>
+		<Name>Jumping</Name>
+		<Day>Friday</Day>
+		<TimeStartHour>11</TimeStartHour>
+		<TimeStartMinute>00</TimeStartMinute>
+		<TimeEndHour>13</TimeEndHour>
+		<TimeEndMinute>00</TimeEndMinute>
+		<Discription>This is a discription</Discription>
+	</Event>
+</EventList>
